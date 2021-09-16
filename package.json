@@ -3,7 +3,7 @@
 	"displayName": "LEGO SPIKE Prime / MINDSTORMS Robot Inventor Extension",
 	"description": "Helps you connect Lego's SPIKE Prime/MINDSTORMS Robot Inventor",
 	"publisher": "PeterStaev",
-	"version": "1.0.3",
+	"version": "1.2.2",
 	"engines": {
 		"vscode": "^1.56.0"
 	},
@@ -15,6 +15,18 @@
 	],
 	"main": "./out/extension.js",
 	"contributes": {
+		"configuration": [
+			{
+				"title": "LEGO SPIKE Prime / MINDSTORMS Robot Inventor",
+				"properties": {
+					"legoSpikePrimeMindstorms.compileBeforeUpload": {
+						"type": "boolean",
+						"default": false,
+						"description": "Compile PY files to MPY before uploading to the LEGO brick."
+					}
+				}
+			}
+		],
 		"commands": [
 			{
 				"command": "lego-spikeprime-mindstorms-vscode.connectToHub",
@@ -63,7 +75,7 @@
 		"lint": "eslint src --ext ts",
 		"test": "node ./out/test/runTest.js",
 		"copy.binding": "rimraf ./node_modules/@serialport/bindings/build && ncp ./.bindings ./node_modules/@serialport/bindings/lib/binding/",
-		"build.binding": "npx electron-rebuild -v 12.0.4"
+		"build.binding": "npx electron-rebuild -v 13.1.7"
 	},
 	"devDependencies": {
 		"@types/glob": "^7.1.3",
@@ -86,6 +98,7 @@
 		"vscode-test": "^1.5.0"
 	},
 	"dependencies": {
+		"@pybricks/mpy-cross-v5": "^2.0.0",
 		"@serialport/parser-readline": "^9.0.7",
 		"serialport": "^9.0.7"
 	}
